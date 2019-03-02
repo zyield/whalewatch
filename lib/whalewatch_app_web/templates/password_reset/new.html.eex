@@ -1,0 +1,53 @@
+<div class="auth-fluid">
+  <!--Auth fluid left content -->
+  <div class="auth-fluid-form-box">
+    <div class="align-items-center d-flex h-100">
+      <div class="card-body">
+
+        <%= render WhalewatchAppWeb.SharedView, "_logo.html", conn: @conn %>
+
+        <!-- title-->
+        <h4 class="mt-4">Reset Password</h4>
+        <p class="text-muted mb-4">Enter your email address and we'll send you an email with instructions to reset your password.</p>
+
+        <%= form_for @conn, password_reset_path(@conn, :create), [as: :password_reset], fn f -> %>
+          <%= if f.errors != [] do %>
+            <div class="alert alert-danger">
+              <p>Please check the errors below:</p>
+            </div>
+          <% end %>
+        
+          <div class="form-group">
+            <%= label f, :email, class: "control-label" %>
+            <%= text_input f, :email, class: "form-control" %>
+            <%= error_tag f, :email %>
+          </div>
+        
+          <div class="form-group">
+            <%= submit class: "btn btn-primary btn-block" do %>
+              <i class="mdi mdi-lock-reset"></i>
+              Reset password  
+            <% end %>
+          </div>
+        <% end %>
+
+        <!-- Footer-->
+        <div class="mt-5">
+          <p class="text-muted">Back to
+            <%= link to: "/login", class: "text-dark ml-1" do %>
+              <b>Log in</b>
+            <% end %><hr/>Already registered?
+            <%= link to: "/confirm/new", class: "text-dark ml-1" do %>
+              <b>Re-send confirmation email</b>
+            <% end %>
+          </p>
+        </div>
+
+      </div> <!-- end .card-body -->
+    </div> <!-- end .align-items-center.d-flex.h-100-->
+  </div>
+  <!-- end auth-fluid-form-box-->
+
+  <%= render WhalewatchAppWeb.SharedView, "_right_content.html" %>
+</div>
+<!-- end auth-fluid-->

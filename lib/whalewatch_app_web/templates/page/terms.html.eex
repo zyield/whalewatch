@@ -1,0 +1,26 @@
+<div id="wrap" class="mt-4 mb-4">
+    <div class="page-agreement">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="tab-content">
+                        <h1>Terms and Conditions</h1>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    Terms and Conditions of https://whalewatch.io
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

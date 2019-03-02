@@ -1,0 +1,18 @@
+<div class="card-header pt-4 pb-3 pl-4 text-left bg-dark">
+  <div class="row">
+    <div class="col-lg-5 col-xl-5 col-md-12 col-sm-12">
+      <a href="/">
+        <span><img class="image-round" src="<%= static_path(@conn, "/images/logo.jpg") %>" alt="" height="55"></span>
+        <span class="logo-text ml-1 text-white">
+          WhaleWatch.io
+          <span class="badge badge-danger">Beta</span>
+        </span>
+      </a>
+    </div>
+
+    <div class="col-lg-7 col-xl-7 col-md-12 col-sm-12 text-white">
+      <p class="mt-2 font-16 mb-0">Get real-time, custom alerts of large volume crypto transactions to/from crypto exchanges.</p>
+      <p class="font-16">Be in the know.</p>
+    </div>
+  </div>
+</div>

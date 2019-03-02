@@ -1,0 +1,22 @@
+<!-- Start Content-->
+<div class="container-fluid">
+
+  <!-- start page title -->
+  <div class="row">
+    <div class="col-12">
+      <div class="page-title-box">
+        <h4 class="page-title">Edit Alert
+        </h4>
+      </div>
+    </div>
+  </div>
+  <!-- end page title -->
+
+
+  <div class="row mb-4">
+    <div class="col-xl-12">
+      <%= render "edit_form.html", Map.merge(assigns, %{ action: alert_path(@conn, :update, @alert), type: @alert.type, editing: true}) %>
+    </div> <!-- end col-->
+  </div>
+  <!-- end row -->
+</div> <!-- container -->

@@ -1,0 +1,86 @@
+// 
+// metis-menu.scss
+//
+
+// Metis Menu Overwrite
+
+.metismenu {
+    padding: 0;
+    ul {
+        padding: 0;
+        li {
+            list-style: none;
+        }
+    }
+
+    .collapse {
+        display: none;
+    }
+    
+    .collapse.in {
+        display: block;
+    }
+    
+    .collapsing {
+        position: relative;
+        height: 0;
+        overflow: hidden;
+        transition-timing-function: ease;
+        transition-duration: .35s;
+        transition-property: height, visibility;
+    }
+}
+
+.side-nav-second-level,
+.side-nav-third-level {
+    li {
+        a {
+            padding: 8px 20px 8px 68px;
+            color: $menu-item;
+            display: block;
+            position: relative;
+            transition: all 0.4s;
+            &:focus,
+            &:hover {
+                color: $menu-item-hover;
+            }
+
+            .menu-arrow {
+                line-height: 1.3rem;
+            }
+        }
+        &.active {
+            >a {
+                color: $menu-item-active;
+            }
+        }
+    }
+}
+
+.side-nav-light {
+    .side-nav-second-level,
+    .side-nav-third-level {
+        li {
+            a {
+                color: $menu-item-light;
+                &:focus,
+                &:hover {
+                    color: $menu-item-light-hover;
+                }
+            }
+            &.active {
+                >a {
+                    color: $menu-item-light-active;
+                }
+            }
+        }
+    }
+}
+
+.side-nav-third-level {
+    li {
+        a {
+            padding: 8px 20px 8px 84px;
+        }
+    }
+}

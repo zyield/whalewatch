@@ -1,0 +1,19 @@
+//
+// apexcharts.scss
+//
+
+.apex-charts {
+  min-height: 10px !important;
+
+  text {
+    font-family: $font-family-base;
+  }
+
+  .apexcharts-canvas {
+    margin: 0 auto;
+  }
+}
+
+.apexcharts-legend-series {
+  font-weight: 600;
+}

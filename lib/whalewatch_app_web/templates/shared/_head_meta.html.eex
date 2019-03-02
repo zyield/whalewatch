@@ -1,0 +1,7 @@
+<meta name="description" content="Real-time, actionable alerts and analysis of crypto transactions. Be in the know. ">
+<meta name="author" content="WhaleWatch.io">
+<meta property="og:title" content="WhaleWatch.io - Get real-time, custom alerts on large volume crypto transactions."/>
+<meta property="og:site_name" content="WhaleWatch.io"/>
+<meta property="og:image" content="<%= static_path(@conn, "/images/trading-crypto.jpg") %>"/>
+<meta property="og:description" content="Real-time, actionable alerts and analysis of crypto transactions. Be in the know."/>
+<title>WhaleWatch.io - Get real-time, custom alerts on large volume crypto transactions.</title>

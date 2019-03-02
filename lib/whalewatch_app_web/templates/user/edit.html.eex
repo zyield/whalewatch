@@ -1,0 +1,67 @@
+<!-- Start Content-->
+<div class="container-fluid">
+
+  <!-- start page title -->
+  <div class="row">
+    <div class="col-12">
+      <div class="page-title-box">
+        <h4 class="page-title">Change your password
+        </h4>
+      </div>
+    </div>
+  </div>
+  <!-- end page title -->
+
+  <div class="row mb-4">
+    <div class="col-xl-6">
+      <%= form_for @changeset, user_path(@conn, :update, @user), fn f -> %>
+
+        <%= if get_flash(@conn, :error) do %>
+          <div class="alert alert-danger alert-dismissible col-12 bg-danger text-white border-0 fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <%= get_flash(@conn, :error) %>
+          </div>
+        <% end %> 
+
+        <%= if @changeset.action do %>
+          <div class="alert alert-danger alert-dismissible col-12 bg-danger text-white border-0 fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <%= full_errors(@changeset) %>
+          </div>
+        <% end %>
+
+        <input type="hidden" name="type" value="account" />
+        <div class="form-group">
+          <%= label f, :password, class: "control-label" %>
+          <%= password_input f, :password, class: "form-control col-6" %>
+        </div>
+
+        <div class="form-group">
+          <%= label f, :new_password, class: "control-label" %>
+          <%= password_input f, :new_password, class: "form-control col-6" %>
+        </div>
+
+        <div class="form-group">
+          <%= label f, :new_password_confirmation, class: "control-label" %>
+          <%= password_input f, :new_password_confirmation, class: "form-control col-6" %>
+        </div>
+
+        <div class="form-group">
+          <%= submit "Submit", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div> <!-- end col-->
+    <div class="col-xl-6">
+      <p>
+      To delete you account permanently, please follow the link below. <br>
+
+      <%= link "Delete", to: user_path(@conn, :delete, @user), method: :delete, data: [confirm: "Are you sure? This will cancel all your active alerts and account information."], class: 'btn btn-sm btn-danger mt-2' %>
+      </p>
+    </div>
+  </div>
+  <!-- end row --> 
+</div> <!-- container -->

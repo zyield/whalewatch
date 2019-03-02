@@ -1,0 +1,24 @@
+<!-- Footer Start -->
+<footer class="footer bg-white">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                2018 © WhaleWatch - whalewatch.io
+            </div>
+            <div class="col-md-6">
+                <div class="text-md-center footer-links d-none d-md-block">
+                  <a href="/terms-conditions">Terms And Conditions</a>
+                  <a href="/privacy-policy">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end Footer -->
+
+<!-- Hack for select2 -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<!-- end hack -->
+
+
+<%= render WhalewatchAppWeb.SharedView, "_ga.html" %>

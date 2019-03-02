@@ -1,0 +1,37 @@
+<div class="account-pages mt-5 mb-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card">
+
+          <%= render WhalewatchAppWeb.SharedView, "_logo_card.html", conn: @conn %>
+
+          <div class="card-body p-4">
+
+            <div class="text-left w-75">
+              <h4 class="text-dark-50 text-left mt-0 font-weight-bold">Almost done!</h4>
+              <p class="text-muted mb-4">Please type a password in the field below to complete your account registration.</p>
+            </div>
+
+            <%= form_for @changeset, user_path(@conn, :update, @user), fn _f -> %>
+              <input type="hidden" name="type" value="onboarding" />
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control col-4" name="user[password]" type="password" id="password">
+              </div>
+
+            <div class="form-group mb-0 text-left mt-3">
+              <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+          </div>
+        <% end %>
+        </div> <!-- end card-body -->
+      </div>
+      <!-- end card -->
+    </div> <!-- end col -->
+  </div>
+  <!-- end row -->
+</div>
+<!-- end container -->
+</div>
+<!-- end page -->

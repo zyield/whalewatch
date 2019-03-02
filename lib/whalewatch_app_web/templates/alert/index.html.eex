@@ -1,0 +1,67 @@
+<!-- Start Content-->
+<div class="container-fluid">
+
+  <!-- start page title -->
+  <div class="row">
+    <div class="col-12">
+      <div class="page-title-box">
+        <h4 class="page-title">My Alerts
+          <div class="btn-group show">
+            <%= link "Add New ", to: alert_path(@conn, :new), class: "btn btn-primary btn-sm ml-3" %>
+          </div>
+        </h4>
+      </div>
+    </div>
+  </div>
+  <!-- end page title -->
+
+  <div class="row">
+      <div class="col-xl-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-centered table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>Exchange</th>
+                    <th>Threshold</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%= for alert <- @alerts do %>
+                    <tr>
+                      <td><%= symbol(alert) %></td>
+                      <td><%= if (exchange_name(alert) == ""), do: "Not selected", else: exchange_name(alert) %></td>
+                      <td><%= alert.threshold / 100 |> Number.Currency.number_to_currency(precision: 0) %></td>
+
+                      <td class="text-right">
+                        <span>
+                          <%= link to: alert_path(@conn, :edit, alert), class: "mr-3" do %>
+                            <i class="mdi mdi-square-edit-outline font-18"></i>
+                          <% end %>
+                        </span>
+
+                        <span>
+                          <%= link to: alert_path(@conn, :delete, alert), method: :delete, data: [confirm: "Are you sure you want to delete this alert?"] do %>
+                            <i class="mdi mdi-delete text-danger font-18"></i>
+                          <% end %> 
+                        </span>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div> <!-- end table-responsive-->
+          </div> <!-- end card-body-->
+        </div> <!-- end card-->
+      </div>
+  </div> <!-- end col-->
+
+
+
+</div>
+
+<!-- end row -->
+</div> <!-- container -->

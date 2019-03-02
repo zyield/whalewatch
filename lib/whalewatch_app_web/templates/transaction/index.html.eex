@@ -1,0 +1,76 @@
+<!-- Start Content-->
+<div class="container-fluid">
+
+  <!-- start page title -->
+  <div class="row">
+    <div class="col-12">
+      <div class="page-title-box">
+        <h4 class="page-title">Alerts History
+        </h4>
+      </div>
+    </div>
+  </div>
+  <!-- end page title -->
+
+  <%= if @total_pages > 1 and @has_alerts do %>
+    <div class="row justify-content-end">
+      <div class="mr-2">
+        <%= pagination_links @page %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body">
+          <%= if @has_alerts do %>
+            <h4 class="header-title mt-2 mb-4">Past 24h</h4>
+            <%= if Kernel.length(@notifications) > 0 do %>
+              <div class="table-responsive">
+                <table class="table table-centered mb-0">
+                  <thead>
+                    <tr>
+                      <th>Symbol</th>
+                      <th>From</th>
+                      <th>To</th>
+                      <th>Value</th>
+                      <th>Amount</th>
+                      <th>Time (UTC)</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%= for notification <- @notifications do %>
+                      <tr>
+                        <td><%= notification.symbol %></td>
+                        <td><%= notification.from_name %></td>
+                        <td><%= notification.to_name %></td>
+                        <td><%= Number.Currency.number_to_currency(notification.cents_value / 100.0) %></td>
+                        <td><%= notification.token_amount %></td>
+                        <td><%= formatted_date(notification.inserted_at) %></td>
+                        <td><%= link 'Details', to: details_link(notification), target: "_blank" %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div> <!-- end table-responsive-->
+            <% else %>
+              <p>No transaction yet. Check back in a few minutes.</p>
+            <% end %>
+          <% else %>
+            <p>In order to see a transaction history please <a href="/alerts">create</a> at least one alert.</p>
+          <% end %>
+        </div> <!-- end card-body-->
+      </div> <!-- end card-->
+    </div>
+  </div>
+
+  <%= if @total_pages > 1 and @has_alerts do %>
+    <div class="row justify-content-end">
+      <div class="mr-2">
+        <%= pagination_links @page %>
+      </div>
+    </div>
+  <% end %>
+</div> <!-- container -->

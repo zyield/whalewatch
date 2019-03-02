@@ -1,0 +1,68 @@
+<div class="account-pages mt-5 mb-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card">
+
+          <!-- Logo -->
+          <div class="card-header pt-4 pb-4 pl-4 text-left bg-dark">
+            <a href="/">
+              <span><img class="image-round" src="<%= static_path(@conn, "/images/logo.jpg") %>" alt="" height="55"></span>
+              <span class="logo-text ml-1 text-white">
+                WhaleWatch.io
+                <span class="badge badge-danger">Beta</span>
+              </span>
+            </a>
+          </div>
+
+          <%= if get_flash(@conn, :info) do %>
+            <div class="card-body p-4">
+              <div class="alert alert-info alert-dismissible bg-info text-white border-0 fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <%= get_flash(@conn, :info) %>
+              </div>
+            </div>
+          <% else %>
+            <div class="card-body p-4">
+
+              <div class="text-left w-75">
+                <h4 class="text-dark-50 text-left mt-0 font-weight-bold mb-4">Reset Password</h4>
+              </div>
+
+              <%= form_for @conn, password_reset_path(@conn, :update), [as: :password_reset, method: :put], fn f -> %>
+
+                <%= if get_flash(@conn, :error) do %>
+                  <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <%= get_flash(@conn, :error) %>
+                  </div>
+                <% end %>
+
+                <div class="form-group">
+                  <%= label f, :password, class: "control-label" %>
+                  <%= password_input f, :password, class: "form-control" %>
+                  <%= error_tag f, :password %>
+                </div>
+              
+                <%= hidden_input f, :key, value: @key %>
+              
+                <div class="form-group">
+                  <%= submit "Reset password", class: "btn btn-primary" %>
+                </div>
+              <% end %>
+
+        </div> <!-- end card-body -->
+      </div>
+      <!-- end card -->
+    <% end %>
+    </div> <!-- end col -->
+  </div>
+  <!-- end row -->
+</div>
+<!-- end container -->
+</div>
+<!-- end page -->

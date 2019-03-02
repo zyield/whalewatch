@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= render WhalewatchAppWeb.SharedView, "_head_meta.html", conn: @conn %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="shortcut icon" type="image/png" href="<%= static_path(@conn, "/images/🐳.png") %>"/>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:300,300italic,400,400italic" rel="stylesheet" type="text/css">
+  </head>
+
+  <body class="auth-fluid-pages pb-0">
+    <%= render @view_module, @view_template, assigns %>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+
+    <%= render WhalewatchAppWeb.SharedView, "_ga.html" %>
+
+  </body>
+</html>

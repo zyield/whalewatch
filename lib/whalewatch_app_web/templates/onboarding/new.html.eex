@@ -1,0 +1,129 @@
+<div class="account-pages mt-lg-4 mt-xl-4 mt-sm-2 mb-lg-4 mb-xl-4 mb-sm-2">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card">
+
+          <%= render WhalewatchAppWeb.SharedView, "_logo_card.html", conn: @conn %>
+
+          <%= if get_flash(@conn, :info) do %>
+            <div class="card-body p-4">
+              <div class="alert alert-info alert-dismissible bg-info text-white border-0 fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <%= get_flash(@conn, :info) %>
+              </div>
+            </div>
+          <% else %>
+            <div class="card-body p-4">
+
+              <div class="text-left w-75">
+                <h4 class="text-dark-50 text-left mt-0 font-weight-bold">Create an alert</h4>
+                <p class="text-muted mb-4">It only takes a minute.</p>
+              </div>
+
+              <%= form_for @changeset, onboarding_path(@conn, :create), fn f -> %>
+
+                <%= if @changeset.action do %>
+                  <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <%= full_errors(@changeset) %>
+                  </div>
+                <% end %>
+
+                <div class="form-group mb-4">
+                  <label>What would you like to track?</label><br/>
+                  <div class="btn-group btn-group-toggle" id="currency-switch" data-toggle="buttons">
+                    <%= for token <- [:btc, :eth, :erc20] do %>
+                      <label class="btn btn-info switch-label <%= if token == :btc do %>active<% end %>" id="<%= token %>">
+                        <%= radio_button f, :type, token, id: "alert_type_#{token}", name: "alert[type]", class: "switch-input", autocomplete: "off" %><%= token |> Atom.to_string |> String.upcase %>
+                      </label>
+                    <% end %>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div id="tokens" class="col-lg-6 col-xl-6 col-sm-12 col-md-12 d-none">
+                    <div class="form-group">
+                      <%= label f, "Token", class: "control-label" %>
+                      <select name="alert[symbol]" class="form-control select2" data-toggle="select2">
+                        <option value="">None</option>
+                        <%= for token <- tokens() do %>
+                          <option value="<%= token.symbol %>">
+                          <%=  token.symbol %> (<%= token.name %>)
+                          </option>
+                        <% end %>
+                      </select>
+                    </div>
+                  </div>
+                  <div id="exchanges" class="col-lg-6 col-xl-6 col-sm-12 col-md-12">
+                    <div class="form-group">
+                      <label class="control-label" for="alert[exchange_name]">Exchange/Whale Wallet (optional)</label>
+                      <select id="exchange-select" name="alert[exchange_name]" class="form-control select2" data-toggle="select2">
+                        <option value="">All</option>
+                        <%= for exchange <- exchanges("btc") do %>
+                          <option value="<%=exchange.name %>">
+                          <%=  exchange.name %>
+                          </option>
+                        <% end %>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="threshold_select">Threshold</label>
+                  <select class="form-control threshold-select" id="btc-select"  name="alert[threshold]">
+                    <option value="250000000"><%= 2500000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+                    <option value="500000000"><%= 5000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+                    <option value="700000000"><%= 7000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+                    <option value="1000000000"><%= 10000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+                  </select>
+                  <select class="form-control threshold-select d-none" id="eth-select">
+                    <option value="100000000"><%= 1000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+                    <option value="300000000"><%= 3000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+                    <option value="500000000"><%= 5000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+                  </select>
+                  <select class="form-control threshold-select d-none" id="token-select">
+                    <option value="10000000"><%= 100000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+                    <option value="25000000"><%= 250000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+                    <option value="100000000"><%= 1000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+                    <option value="300000000"><%= 3000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+                    <option value="500000000"><%= 5000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="emailaddress">Email address</label>
+                  <input class="form-control" name="alert[email]" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                </div>
+
+                <div class="row">
+                  <div class="form-group mb-0 text-left col-lg-6 col-xl-6 col-md-6 col-sm-12 mt-2">
+                    <button class="btn btn-primary" type="submit">Create Alert</button>
+                  </div>
+
+                  <div class="col-lg-6 col-sm-12 col-md-6 col-xl-6">
+                    <p class="text-muted text-right mt-3">Already have an account?
+                      <a class="ml-1 btn btn-secondary" href="/login"><b>Login</b>
+                      </a>
+                    </p>
+                  </div>
+                </div>
+
+            </div>
+          <% end %>
+        </div> <!-- end card-body -->
+      </div>
+      <!-- end card -->
+    <% end %>
+    </div> <!-- end col -->
+  </div>
+  <!-- end row -->
+</div>
+<!-- end container -->
+</div>
+<!-- end page -->

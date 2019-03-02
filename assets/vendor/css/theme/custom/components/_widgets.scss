@@ -1,0 +1,137 @@
+// 
+// widgets.scss
+//
+
+// Progressbar with percentage
+.progress-w-percent {
+    min-height: 20px;
+    margin-bottom: 20px;
+
+    .progress {
+        width: calc(100% - 50px);
+        float: left;
+        margin-top: 8px;
+    }
+
+    .progress-value {
+        width: 40px;
+        float: right;
+        text-align: right;
+        line-height: 20px;
+    }
+}
+
+
+// Simple tile box
+.widget-flat {
+    position: relative;
+    overflow: hidden;
+
+    i.widget-icon {
+        color: $primary;
+        font-size: 20px;
+        background-color: rgba($primary, 0.25);
+        height: 40px;
+        width: 40px;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 3px;
+        display: inline-block;
+    }
+
+    @media (min-width: 1200px) and (max-width: 1500px){
+        i.widget-icon { 
+            display: none;
+        }
+    }
+}
+
+
+// Dashboard widgets
+.dash-item-overlay {
+    position: absolute;
+    left: 8%;
+    max-width: 350px;
+    padding: 20px;
+    z-index: 1;
+}
+
+.chart-content-bg {
+    background-color: lighten($gray-100, 2%);
+}
+
+.chart-widget-list {
+    p {
+        border-bottom: 1px solid$gray-100;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+}
+
+
+// Inbox-widget(Used Profile)
+.inbox-widget {
+
+    .inbox-item {
+        border-bottom: 1px solid lighten($light, 5%);
+        overflow: hidden;
+        padding: 0.625rem 0;
+        position: relative;
+
+        .inbox-item-img {
+            display: block;
+            float: left;
+            margin-right: 15px;
+            width: 40px;
+
+            img {
+                width: 40px;
+            }
+        }
+        
+        .inbox-item-author {
+            color: $dark;
+            display: block;
+            margin: 0;
+        }
+
+        .inbox-item-text {
+            color: $gray-600;
+            display: block;
+            font-size: 0.8125rem;
+            margin: 0;
+        }
+
+        .inbox-item-date {
+            color: $gray-600;
+            font-size: 0.6875rem;
+            position: absolute;
+            right: 5px;
+            top: 10px;
+        }
+    }
+} 
+
+
+// tilebox-one (Used Profile)
+.tilebox-one {
+    i {
+        position: absolute;
+        right: 1.5rem;
+        font-size: 2rem;
+        opacity: 0.3;
+    }
+}
+
+
+// tollfree box (Used Profile)
+.toll-free-box {
+    i{
+        position: absolute;
+        left: 0;
+        bottom: -15px;
+        font-size: 4rem;
+        opacity: 0.4;
+        transform: rotate(30deg);
+    }
+}

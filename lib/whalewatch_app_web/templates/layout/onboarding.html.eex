@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= render WhalewatchAppWeb.SharedView, "_head_meta.html", conn: @conn %>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="shortcut icon" type="image/png" href="<%= static_path(@conn, "/images/🐳.png") %>"/>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:300,300italic,400,400italic" rel="stylesheet" type="text/css">
+  </head>
+
+  <body class="authentication-bg" data-layout="topnav">
+    <!-- Begin page -->
+    <div class="wrapper">
+
+      <div class="content-page">
+        <div class="content">
+          <%= render @view_module, @view_template, assigns %>
+
+        </div> <!-- content -->
+        <%= render WhalewatchAppWeb.SharedView, "_footer.html" %>
+      </div>
+    </div>
+    <!-- END wrapper -->
+
+    <!-- App js -->
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+
+    <script type="text/javascript">
+      window.doorbellOptions = {
+        id: '9666',
+        appKey: 'OHKasiHa39GU07xMFywUTzPXHHNslnLXGOEN60EPxTq4nRJ5n1PKpjlCHJscNmQz'
+      };
+        (function(w, d, t) {
+        var hasLoaded = false;
+        function l() { if (hasLoaded) { return; } hasLoaded = true; window.doorbellOptions.windowLoaded = true; var g = d.createElement(t);g.id = 'doorbellScript';g.type = 'text/javascript';g.async = true;g.src = 'https://embed.doorbell.io/button/'+window.doorbellOptions['id']+'?t='+(new Date().getTime());(d.getElementsByTagName('head')[0]||d.getElementsByTagName('body')[0]).appendChild(g); }
+        if (w.attachEvent) { w.attachEvent('onload', l); } else if (w.addEventListener) { w.addEventListener('load', l, false); } else { l(); }
+        if (d.readyState == 'complete') { l(); }
+      }(window, document, 'script'));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+{"x": {
+  "hash": "8164c56833d124866643024b5876627daed96ddb2a947024b5b6451a53c6ee22",
+  "inputs": [
+    {
+      "prev_out": {
+        "addr": "1ADjKWiwKLXfD1fjoeLhuC7qPPnU4te9Wm",
+        "n": 1,
+        "script": "76a9146521732a91865331ffc53c4887c8e30bcb324d1588ac",
+        "spent": true,
+        "tx_index": 377307219,
+        "type": 0,
+        "value": 3766583
+      },
+      "script": "483045022100bd400ef96a0e4f2cc1ad7506e070f43911341278803aabd25c107a1c2f45b34d0220682db747bab994ec7ddb24aba48d273bb405474a1701461795cc69478afef146012103c0d939392e3fcab62b49b6546203aaa802b296896b4a6e68b06afa26c86769de",
+      "sequence": 4294967295
+    }
+  ],
+  "out": [
+    {
+      "addr": "14THVBo6NMTpPaygbACarX7xZCmTfR5duX",
+      "n": 0,
+      "script": "76a91425e0f44334e2b45e00066b7a074e7e51050ef4f588ac",
+      "spent": false,
+      "tx_index": 378501210,
+      "type": 0,
+      "value": 661101
+    },
+    {
+      "addr": "1JRf44khKEmYNboh5BVzjkV5nBqk6Km6D3",
+      "n": 1,
+      "script": "76a914bf23e2e5c051ef5b74bf14412a6e3b07408e1d8d88ac",
+      "spent": false,
+      "tx_index": 378501210,
+      "type": 0,
+      "value": 15000000000
+    }
+  ],
+  "tx_index": 378501210
+  }
+}

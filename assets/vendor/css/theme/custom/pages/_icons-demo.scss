@@ -1,0 +1,43 @@
+// 
+// icons-demo.scss
+//
+
+// Icon demo ( Demo only )
+.icons-list-demo {
+    div {
+        cursor: pointer;
+        line-height: 45px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+        overflow: hidden;
+        p {
+            margin-bottom: 0;
+            line-height: inherit;
+        }
+    }
+    i {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 22px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        margin-right: 12px;
+        color: rgba($dark, 0.7);
+        border-radius: 3px;
+        display: inline-block;
+        transition: all 0.2s;
+    }
+    .col-md-4 {
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        background-clip: padding-box;
+        margin-bottom: 10px;
+        &:hover,
+        &:hover i {
+            color: $primary;
+        }
+    }
+}

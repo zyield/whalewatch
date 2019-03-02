@@ -1,0 +1,12 @@
+{
+  "skip_files": [
+    "lib/whalewatch_app.ex",
+    "lib/whalewatch_app_web.ex",
+    "test/support/channel_case.ex",
+    "test/support/data_case.ex",
+    "lib/whalewatch_app_web/gettext.ex",
+    "lib/whalewatch_app/repo.ex",
+    "lib/whalewatch_app_web/channels/stream_channel.ex",
+    "lib/whalewatch_app_web/channels/user_socket.ex"
+  ]
+}

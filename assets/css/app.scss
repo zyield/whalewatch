@@ -1,0 +1,47 @@
+/* This file is for your main application css. */
+
+#plan-switch:checked {
+  + label {
+    width: 80px;
+
+    &:after {
+      left: 58px;
+    }
+  }
+}
+
+#plan-switch {
+  + label {
+    width: 80px;
+  }
+}
+
+.image-round {
+  border-radius: 50%;
+}
+
+.logo-text {
+  color: #02a8b5;
+  font-size: 18px;
+}
+
+.topnav-navbar .topnav-logo {
+  line-height: 64px;
+}
+
+.topnav { 
+  background: #313a46 !important;
+}
+
+.lead {
+  font-family: 'Oxygen';
+}
+.lead h4,
+.lead h3,
+{
+  font-family: 'Oxygen';
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.topnav-navbar .topnav-logo { min-width: 0 }

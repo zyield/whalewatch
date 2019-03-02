@@ -1,0 +1,28 @@
+{"x": {
+  "hash": "8164c56833d124866643024b5876627daed96ddb2a947024b5b6451a53c6ee22",
+  "inputs": [
+    {
+      "prev_out":{
+        "addr": "1ADjKWiwKLXfD1fjoeLhuC7qPPnU4te9Wm",
+        "n": 1,
+        "script": "76a9146521732a91865331ffc53c4887c8e30bcb324d1588ac",
+        "spent": true,
+        "tx_index": 377307219,
+        "type": 0,
+        "value": 3766583
+      }
+    }
+  ],
+  "out": [
+    {
+      "addr": "14THVBo6NMTpPaygbACarX7xZCmTfR5duX",
+      "n": 0,
+      "script": "76a91425e0f44334e2b45e00066b7a074e7e51050ef4f588ac",
+      "spent": false,
+      "tx_index": 378501210,
+      "type": 0,
+      "value": 400000000
+    }
+  ]
+  }
+}

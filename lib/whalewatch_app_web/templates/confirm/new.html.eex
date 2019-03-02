@@ -1,0 +1,63 @@
+<div class="auth-fluid">
+  <!--Auth fluid left content -->
+  <div class="auth-fluid-form-box">
+    <div class="align-items-center d-flex h-100">
+      <div class="card-body">
+
+        <%= render WhalewatchAppWeb.SharedView, "_logo.html", conn: @conn %>
+
+        <!-- title-->
+        <h4 class="mt-4">Re-send confirmation email</h4>
+        <p class="text-muted mb-4">Enter your email address and we'll send you an email with your confirmation link.</p>
+
+        <%= form_for @conn, "/confirm", [as: :confirm], fn f -> %>
+
+          <%= if get_flash(@conn, :error) do %>
+            <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+              <%= get_flash(@conn, :error) %>
+            </div>
+          <% end %>
+
+          <%= if get_flash(@conn, :info) do %>
+            <div class="alert alert-info alert-dismissible bg-info text-white border-0 fade show" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+              <%= get_flash(@conn, :info) %>
+            </div>
+          <% end %>
+        
+          <div class="form-group">
+            <%= label f, :email, class: "control-label" %>
+            <%= text_input f, :email, class: "form-control" %>
+            <%= error_tag f, :email %>
+          </div>
+        
+          <div class="form-group">
+            <%= submit class: "btn btn-primary btn-block" do %>
+              <i class="mdi mdi-lock-reset"></i>
+              Submit
+            <% end %>
+          </div>
+        <% end %>
+
+        <!-- Footer-->
+        <div class="mt-5">
+          <p class="text-muted">Back to 
+            <%= link to: "/login", class: "text-dark ml-1" do %>
+              <b>Log in</b>
+            <% end %>
+          </p>
+        </div>
+
+      </div> <!-- end .card-body -->
+    </div> <!-- end .align-items-center.d-flex.h-100-->
+  </div>
+  <!-- end auth-fluid-form-box-->
+
+  <%= render WhalewatchAppWeb.SharedView, "_right_content.html" %>
+</div>
+<!-- end auth-fluid-->

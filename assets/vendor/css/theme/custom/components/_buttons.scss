@@ -1,0 +1,14 @@
+// 
+// buttons.scss
+//
+
+.btn-rounded {
+    border-radius: 2em;
+}
+
+// Button Shadows
+@each $color, $value in $theme-colors {
+    .btn-#{$color} {
+        @include button-shadow($value);
+    }
+}

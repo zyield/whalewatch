@@ -1,0 +1,42 @@
+<!-- Start Content-->
+<div class="container-fluid">
+
+  <!-- start page title -->
+  <div class="row">
+    <div class="col-12">
+      <div class="page-title-box">
+        <h4 class="page-title">View Alert
+        </h4>
+      </div>
+    </div>
+  </div>
+  <!-- end page title -->
+
+
+  <div class="row">
+    <div class="col-xl-6">
+
+      <ul>
+        <li>
+          <strong>Symbol:</strong>
+          <%= @alert.symbol %>
+        </li>
+      
+        <li>
+          <strong>Contract address:</strong>
+          <%= @alert.contract_address %>
+        </li>
+      
+        <li>
+          <strong>Threshold:</strong>
+          <%= @alert.threshold %>
+        </li>
+      </ul>
+
+      <span><%= link "Edit", to: alert_path(@conn, :edit, @alert) %></span>
+      <span><%= link "Back", to: alert_path(@conn, :index) %></span>
+
+    </div> <!-- end col-->
+  </div>
+  <!-- end row --> 
+</div> <!-- container -->

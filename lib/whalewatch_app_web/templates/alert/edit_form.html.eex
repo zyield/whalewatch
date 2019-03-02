@@ -1,0 +1,151 @@
+<%= form_for @changeset, @action, fn f -> %>
+
+  <%= if @changeset.action do %>
+  <div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <%= full_errors(@changeset) %>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="row">
+    <div class="card col-xl-6">
+      <div class="card-body mb-2">
+        <h5 class="card-title">Alert Type</h5>
+        <p><%= @type |> Atom.to_string |> String.upcase %></p>
+      </div>
+    </div>
+  </div>
+  <%= if @type == :erc20 do %>
+    <div id="tokens" class="row">
+      <div class="card col-xl-6 col-lg-6 col-md-6 col-sm-12">
+        <div class="card-body">
+          <div class="form-group">
+            <%= label f, "Token", class: "control-label" %>
+            <%= select f, :symbol, tokens(), class: "form-control select2 token-select", "data-toggle": "select2", prompt: "None" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-5 col-lg-5 col-md-5 ml-4 d-none d-md-block align-self-center">
+        <div class="card-body">
+          <p class="font-14 mb-3">
+            Select or type the Erc20 Token symbol you wish to track.
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+ <div id="exchanges" class="row">
+   <div class="card col-xl-6 col-lg-6 col-md-6 col-sm-12">
+     <div class="card-body">
+       <div class="form-group">
+         <label class="control-label" for="alert[exchange_name]">Exchange/Whale Wallet (optional)</label>
+           <select name="alert[exchange_name]" id="exchange-select" class="form-control select2" data-toggle="select2">
+             <option value="">All</option>
+             <%= for exchange <- exchanges(@changeset.data.type) do %>
+               <option value="<%=exchange.value %>"
+               <%= exchange_name(@changeset.data) %>
+                 <%= if exchange_name(@changeset.data) == exchange.name, do: "selected" %>>
+                <%= exchange.name %>
+               </option>
+             <% end %>
+         </select>
+       </div>
+     </div>
+   </div>
+   <div class="col-xl-5 col-lg-5 col-md-5 ml-4 d-none d-md-block align-self-center">
+     <div class="card-body">
+       <p class="font-14 mb-3">
+         Select the Exchange or Whale Wallet you wish to monitor.
+       </p>
+     </div>
+   </div>
+ </div>
+
+  <div class="row">
+    <div class="card col-xl-6 col-lg-6 col-md-6 col-sm-12">
+      <div class="card-body">
+        <div class="form-group">
+          <div class="form-group">
+            <label>Threshold</label>
+            <%= if @type == :btc do %>
+              <select class="form-control threshold-select" id="btc-select"  name="alert[threshold]">
+                <option <%= if @changeset.data.threshold == 100000000, do: "selected"  %> value="100000000">
+                  <%= 1000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+                <option <%= if @changeset.data.threshold == 300000000, do: "selected"  %> value="300000000">
+                  <%= 3000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+                <option <%= if @changeset.data.threshold == 500000000, do: "selected"  %> value="500000000">
+                  <%= 5000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+                <option <%= if @changeset.data.threshold == 700000000, do: "selected"  %> value="700000000">
+                  <%= 7000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+                <option <%= if @changeset.data.threshold == 1000000000, do: "selected"  %> value="1000000000">
+                  <%= 10000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+              </select>
+            <% end %>
+            <%= if @type == :eth do %>
+              <select class="form-control threshold-select" id="eth-select" name="alert[threshold]">
+                <option <%= if @changeset.data.threshold == 25000000, do: "selected" %> value="25000000">
+                  <%= 250000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+                <option <%= if @changeset.data.threshold == 50000000, do: "selected" %> value="50000000">
+                  <%= 500000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+                <option <%= if @changeset.data.threshold == 100000000, do: "selected" %> value="100000000">
+                  <%= 1000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+                <option <%= if @changeset.data.threshold == 300000000, do: "selected" %> value="300000000">
+                  <%= 3000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+                <option <%= if @changeset.data.threshold == 500000000, do: "selected" %> value="500000000">
+                  <%= 5000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+              </select>
+            <% end %>
+            <%= if @type == :erc20 do %>
+              <select class="form-control threshold-select" id="token-select" name="alert[threshold]">
+                <option <%= if @changeset.data.threshold == 2500000, do: "selected" %> value="2500000">
+                  <%= 25000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+                <option <%= if @changeset.data.threshold == 10000000, do: "selected" %> value="10000000">
+                  <%= 100000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+                <option <%= if @changeset.data.threshold == 25000000, do: "selected" %> value="25000000">
+                  <%= 250000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+                <option <%= if @changeset.data.threshold == 100000000, do: "selected" %> value="100000000">
+                  <%= 1000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+                <option <%= if @changeset.data.threshold == 300000000, do: "selected" %> value="300000000">
+                  <%= 3000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+                <option <%= if @changeset.data.threshold == 500000000, do: "selected" %> value="500000000">
+                  <%= 5000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up
+                </option>
+              </select>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-5 col-lg-5 col-md-5 ml-4 d-none d-md-block align-self-center">
+      <div class="card-body">
+        <p class="font-14 mb-3">
+          Select the minimum transaction amount in USD you wish to track. The lower the amount, the more alerts you'll be receiving.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

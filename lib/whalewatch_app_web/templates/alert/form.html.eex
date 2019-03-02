@@ -1,0 +1,122 @@
+<%= form_for @changeset, @action, fn f -> %>
+
+  <%= if @changeset.action do %>
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 alert alert-info alert-dismissible bg-info text-white border-0 fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <%= full_errors(@changeset) %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="card col-xl-6 col-lg-6 col-md-6 col-sm-12">
+      <div class="card-body mb-2">
+        <p class="text-normal font-14 mb-2">
+          What would you like to track?
+        </p>
+
+        <div class="btn-group btn-group-toggle" id="currency-switch" data-toggle="buttons">
+          <%= for token <- [:btc, :eth, :erc20] do %>
+            <label class="btn btn-info switch-label <%= if active_token(token, @type) do %>active<% end %>" id="<%= token %>">
+              <%= radio_button f, :type, token, class: "switch-input", autocomplete: "off" %><%= token |> Atom.to_string |> String.upcase %>
+            </label>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-5 col-lg-5 col-md-5 ml-4 d-none d-md-block align-self-center">
+      <div class="card-body">
+        <p class="font-14 mb-3">
+          Select either Eth or a Erc20 token to begin. More coins like BTC, LTC, BCH, XRP coming soon!
+        </p>
+      </div> <!-- end card-body -->
+    </div>
+  </div>
+
+  <div id="tokens" class="row d-none">
+    <div class="card col-xl-6 col-lg-6 col-md-6 col-sm-12">
+      <div class="card-body">
+        <div class="form-group">
+          <%= label f, "Token", class: "control-label" %>
+          <%= select f, :symbol, tokens(), class: "form-control select2 token-select", "data-toggle": "select2", prompt: "None" %>
+        </div>
+      </div> <!-- end card-body -->
+    </div>
+    <div class="col-xl-5 col-lg-5 col-md-5 ml-4 d-none d-md-block align-self-center">
+      <div class="card-body">
+        <p class="font-14 mb-3">
+          Select or type the Erc20 Token symbol you wish to track.
+        </p>
+      </div> <!-- end card-body -->
+    </div>
+  </div>
+
+  <div id="exchanges" class="row">
+    <div class="card col-xl-6 col-lg-6 col-md-6 col-sm-12">
+      <div class="card-body">
+        <div class="form-group" id="exchange-select-container">
+          <label class="control-label" for="alert[exchange_name]">Exchange/Whale Wallet (optional)</label>
+            <select name="alert[exchange_name]" id="exchange-select" class="form-control select2" data-toggle="select2">
+              <option value="">All</option>
+              <%= for exchange <- exchanges("btc") do %>
+                <option value="<%=exchange.value %>">
+                <%=  exchange.name %>
+                </option>
+              <% end %>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-5 col-lg-5 col-md-5 ml-4 d-none d-md-block align-self-center">
+      <div class="card-body">
+        <p class="font-14 mb-3">
+          Select the Exchange or Whale Wallet you wish to monitor.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="card col-xl-6 col-lg-6 col-md-6 col-sm-12">
+      <div class="card-body">
+        <div class="form-group">
+          <div class="form-group">
+            <label>Threshold</label>
+            <select class="form-control threshold-select" id="btc-select"  name="alert[threshold]">
+              <option value="250000000"><%= 2500000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+              <option value="500000000"><%= 5000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+              <option value="700000000"><%= 7000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+              <option value="1000000000"><%= 10000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+            </select>
+            <select class="form-control threshold-select d-none" id="eth-select">
+              <option value="100000000"><%= 1000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+              <option value="300000000"><%= 3000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+              <option value="500000000"><%= 5000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+            </select>
+            <select class="form-control threshold-select d-none" id="token-select">
+              <option value="10000000"><%= 100000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+              <option value="25000000"><%= 250000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+              <option value="100000000"><%= 1000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+              <option value="300000000"><%= 3000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+              <option value="500000000"><%= 5000000 |> Number.Currency.number_to_currency(precision: 0) %> USD and up</option>
+            </select>
+          </div>
+        </div>
+      </div> <!-- end card-body -->
+    </div>
+    <div class="col-xl-5 col-lg-5 col-md-5 ml-4 d-none d-md-block align-self-center">
+      <div class="card-body">
+        <p class="font-14 mb-3">
+          Select the minimum transaction amount in USD you wish to track. The lower the amount, the more alerts you'll be receiving.
+        </p>
+      </div> <!-- end card-body -->
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
