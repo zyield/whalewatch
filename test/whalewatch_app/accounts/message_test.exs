@@ -16,13 +16,6 @@ defmodule WhalewatchApp.Accounts.MessageTest do
       <> "<br>"
       <> "<a href=\"http://www.example.com/confirm?key=#{key}\">Confirm now</a>"
       <> "<br>"
-      <> "<br>"
-      <> "<br>"
-      <> "Agile Alpha Inc."
-      <> "<br>"
-      <> "229 Niagara Street"
-      <> "<br>"
-      <> "Toronto, Ontario, Canada"
 
     sent_email = Message.confirm_request(email, key)
     assert sent_email.subject =~ "Confirm your account"

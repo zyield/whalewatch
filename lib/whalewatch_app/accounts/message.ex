@@ -51,13 +51,6 @@ defmodule WhalewatchApp.Accounts.Message do
       <> "<br>"
       <> "<a href=\"#{confirm_url}\">Confirm now</a>"
       <> "<br>"
-      <> "<br>"
-      <> "<br>"
-      <> "Agile Alpha Inc."
-      <> "<br>"
-      <> "229 Niagara Street"
-      <> "<br>"
-      <> "Toronto, Ontario, Canada</body></html>"
 
     prep_mail(address)
     |> subject("Confirm your account")
@@ -86,11 +79,6 @@ defmodule WhalewatchApp.Accounts.Message do
       <> "or copy and paste this URL into your web browser's address bar:</p>"
       <> "<p>#{@base_url}/password_resets/edit?key=#{key}</p>"
       <> "<br>"
-      <> "<p>Need help? You can contact us by email (whalewatch@agilealpha.com) if the above doesn\'t work.</p>"
-      <> "<br>"
-      <> "<br>"
-      <> "Thanks,"
-      <> "Team WhaleWatch.io"
 
     prep_mail(address)
     |> subject("WhaleWatch.io - password reset request")
@@ -126,9 +114,5 @@ defmodule WhalewatchApp.Accounts.Message do
     new_email()
     |> to(address)
     |> from("no-reply@whalewatch.io")
-  end
-
-  defp encode_url(url) do
-    URI.encode(url, &URI.char_unreserved?/1)
   end
 end
